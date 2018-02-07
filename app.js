@@ -8,22 +8,22 @@ app.use(index)
 const server = http.createServer(app)
 const io = socketIo(server)
 
-const initialData = ['hi', 'hi', 'cool', 'sup', 'nm', 'you']
+const initialData = []
 
 io.on("connection", socket => {
   console.log("New client connected")
-  setTimeout(() => {
-    console.log('sending initialData')
-    socket.emit("init", initialData)
-  }, 100)
+  socket.emit("update chat", initialData)
+  socket.join('theChat')
 
-  socket.on("data", (val, fn) => {
-    console.log(val)
+  socket.on("data", (val) => {
     initialData.push(val)
-    fn(initialData)
+    io.sockets.in('theChat').emit("update chat", initialData)
   })
 
-  socket.on("disconnect", () => console.log("Client disconnected"))
+  socket.on("disconnect", () => {
+    console.log("Client disconnected")
+    socket.leave('theChat')
+  })
 })
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
