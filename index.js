@@ -23,8 +23,8 @@ io.on("connection", socket => {
       socket.join(room)
     })
 
-  socket.on("data", (val) => {
-    writeMessage(room, 'fakenickname', 'fakeURL', val)
+  socket.on("data", ({ body, nickname, avatarUrl}) => {
+    writeMessage(room, nickname, avatarUrl, body)
       .then(res => {
         initialData.push(res.rows[0])
         io.sockets.in(room).emit("update chat", initialData)
