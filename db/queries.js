@@ -1,3 +1,5 @@
+const db = require('./index')
+
 const writeMessageQuery = `
   INSERT INTO messages(room_id, nickname, avatar, body) values($1, $2, $3, $4) returning *
 `
