@@ -5,10 +5,10 @@ const { query } = require('./db/index')
 const { getMessages, writeMessage } = require('./db/queries')
 
 let initialData = []
-const room = 'theChat'
 
 io.on("connection", socket => {
   console.log("New client connected")
+  const room = socket.handshake.query.room
   getMessages(room)
     .then(rows => {
       initialData = rows
