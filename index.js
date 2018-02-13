@@ -1,15 +1,8 @@
-const app = require("express")()
-const http = require("http").Server(app)
+const http = require("http").Server()
 const io = require("socket.io")(http)
 const port = process.env.PORT || 4001
 const { query } = require('./db/index')
 const { getMessages, writeMessage } = require('./db/queries')
-
-// dont need this for now
-
-// app.get('/', (req, res) => {
-//   res.send({ response: "I am alive" }).status(200);
-// })
 
 let initialData = []
 const room = 'theChat'

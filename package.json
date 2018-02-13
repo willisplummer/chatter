@@ -6,7 +6,6 @@
   "author": "willis plummer",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2",
     "pg": "^7.4.1",
     "socket.io": "^2.0.4"
   },
