@@ -10,6 +10,10 @@
     "socket.io": "^2.0.4"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "watch": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
   }
 }
