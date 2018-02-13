@@ -2,6 +2,7 @@
   "name": "chatter",
   "version": "1.0.0",
   "description": "chat app",
+  "engines" : { "node" : "8.7.0" },
   "main": "index.js",
   "author": "willis plummer",
   "license": "MIT",
@@ -11,7 +12,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "watch": "nodemon index.js"
+    "watch": "nodemon index.js",
+    "createDB": "node db/migrations/createMessagesTable.js"
   },
   "devDependencies": {
     "nodemon": "^1.14.12"
