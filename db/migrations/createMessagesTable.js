@@ -11,6 +11,6 @@ const createMessagesTableQuery = `
   )
 `
 
-client.query(createMessagesTableQuery)
+db.query(createMessagesTableQuery)
   .then(() => client.end())
   .catch(console.log)
