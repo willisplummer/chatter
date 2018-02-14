@@ -14,6 +14,7 @@ io.on("connection", socket => {
       initialData = rows
       socket.emit("update chat", initialData)
       socket.join(room)
+      io.sockets.in(room).emit("update userCount", Object.keys(io.sockets.in(room).connected).length)
     })
 
   socket.on("data", ({ body, nickname, avatarUrl}) => {
@@ -27,6 +28,7 @@ io.on("connection", socket => {
   socket.on("disconnect", () => {
     console.log("Client disconnected")
     socket.leave(room)
+    io.sockets.in(room).emit("update userCount", Object.keys(io.sockets.in(room).connected).length)
   })
 })
 
